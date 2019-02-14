@@ -10,7 +10,7 @@ export default class Wrapper extends Component {
     OneSignal.setLogLevel(7, 0);
     let requiresConsent = false;
     OneSignal.setRequiresUserPrivacyConsent(requiresConsent);
-    OneSignal.init("6d142fd0-4b10-4fdf-a575-bb60c1899c12");
+    OneSignal.init("cd4da7af-2270-4639-bc59-38f232825d3f");
     OneSignal.configure()
     OneSignal.inFocusDisplaying(2);
     OneSignal.addEventListener('received', this.onReceived);

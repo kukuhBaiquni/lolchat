@@ -1,5 +1,5 @@
 {
-  "name": "chatlol",
+  "name": "chaty",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,14 +7,25 @@
     "test": "jest"
   },
   "dependencies": {
+    "npm": "^6.7.0",
     "react": "16.6.3",
     "react-native": "0.58.4",
+    "react-native-actionsheet": "^2.4.2",
+    "react-native-animatable": "^1.3.1",
     "react-native-fbsdk": "^0.8.0",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-image-picker": "^0.28.0",
+    "react-native-indicators": "^0.13.0",
+    "react-native-modal": "^7.0.2",
     "react-native-onesignal": "^3.2.12",
     "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^6.2.0",
-    "react-navigation": "^3.2.1"
+    "react-navigation": "^3.2.1",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.1",
+    "socket.io-client": "^2.2.0",
+    "superagent": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",

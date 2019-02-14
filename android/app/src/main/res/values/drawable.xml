@@ -1,0 +1,3 @@
+<resources>
+    <item name="ic_notification" type="drawable">@mipmap/ic_launcher_round</item>
+</resources>

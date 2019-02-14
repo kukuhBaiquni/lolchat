@@ -1,4 +1,4 @@
-package com.chatlol;
+package com.chaty;
 
 import com.facebook.react.ReactActivity;
 // Splash Screen
@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected String getMainComponentName() {
-        return "chatlol";
+        return "chaty";
     }
 
     // Splash Screen
