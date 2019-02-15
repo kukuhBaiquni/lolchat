@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "860001818556-oa0okhl7t6q0ijmcqsvvi3ak16nl2jgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chaty",
+            "certificate_hash": "14ed1a8868b579a5fdedeec9af41b11aba9aba0c"
+          }
+        },
+        {
           "client_id": "860001818556-bc0kphcm7b7dvh69hske40fbgdief130.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860001818556-bc0kphcm7b7dvh69hske40fbgdief130.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

@@ -142,6 +142,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.3'
     implementation "com.google.firebase:firebase-auth:16.1.0"
     implementation "com.google.android.gms:play-services-base:16.0.1"
+    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
     implementation project(':react-native-image-crop-picker')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-vector-icons')
