@@ -41,7 +41,6 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		3978041B61AD4EE1A5C63D46 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A6D42EBB54492692FC5DD1 /* libSplashScreen.a */; };
 		982BE14A182949D6B4458616 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3667759442894CEDB8FE1E1D /* libRNGestureHandler.a */; };
-		F5BD88B4E7EA47689D7D9154 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B47A2F0B1EF74F459417F37A /* libRCTOneSignal.a */; };
 		496F32DC45FD404D8A8FBB45 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC3355094CC4DFFA6E8B189 /* libRCTFBSDK.a */; };
 		5BC0DCB0612341438A46E6C1 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 467444910A304A19AB2D9E34 /* libRNVectorIcons.a */; };
 		DC5314F9F1864CD884A5DF34 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 335EFAC906A042E4A9B920F5 /* libRNVectorIcons-tvOS.a */; };
@@ -62,6 +61,7 @@
 		94B39C8C62174F26A3C1FE24 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73EF47C93AB040BFA38FEC6D /* Zocial.ttf */; };
 		B0A94983D58444E9A64B5840 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8618322282C547CF84E759EC /* libRNImagePicker.a */; };
 		32E9F449100A48F496D20059 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B176B4045E3D42748A8944C3 /* libimageCropPicker.a */; };
+		42695498D52B4D9298E34989 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA98B525F3046CFB796BA2F /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -373,8 +373,6 @@
 		D7A6D42EBB54492692FC5DD1 /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		0BAB9D9426724B80A5043BCB /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		3667759442894CEDB8FE1E1D /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		0D037A525B7043CD87FAF3D7 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; name = "RCTOneSignal.xcodeproj"; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B47A2F0B1EF74F459417F37A /* libRCTOneSignal.a */ = {isa = PBXFileReference; name = "libRCTOneSignal.a"; path = "libRCTOneSignal.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		3005B34DC1D844CFB70F5904 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		EAC3355094CC4DFFA6E8B189 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8917C0B570124566AA5CFC8F /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -399,6 +397,8 @@
 		8618322282C547CF84E759EC /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		70D24FD6767A47D685F27AB2 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		B176B4045E3D42748A8944C3 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		56410A77758645DAAC639860 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FFA98B525F3046CFB796BA2F /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,11 +429,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				3978041B61AD4EE1A5C63D46 /* libSplashScreen.a in Frameworks */,
 				982BE14A182949D6B4458616 /* libRNGestureHandler.a in Frameworks */,
-				F5BD88B4E7EA47689D7D9154 /* libRCTOneSignal.a in Frameworks */,
 				496F32DC45FD404D8A8FBB45 /* libRCTFBSDK.a in Frameworks */,
 				5BC0DCB0612341438A46E6C1 /* libRNVectorIcons.a in Frameworks */,
 				B0A94983D58444E9A64B5840 /* libRNImagePicker.a in Frameworks */,
 				32E9F449100A48F496D20059 /* libimageCropPicker.a in Frameworks */,
+				42695498D52B4D9298E34989 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,11 +626,11 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				588CA83FBE194B1AA28A2662 /* SplashScreen.xcodeproj */,
 				0BAB9D9426724B80A5043BCB /* RNGestureHandler.xcodeproj */,
-				0D037A525B7043CD87FAF3D7 /* RCTOneSignal.xcodeproj */,
 				3005B34DC1D844CFB70F5904 /* RCTFBSDK.xcodeproj */,
 				8917C0B570124566AA5CFC8F /* RNVectorIcons.xcodeproj */,
 				E2247BA5ABBD4DF4946C1163 /* RNImagePicker.xcodeproj */,
 				70D24FD6767A47D685F27AB2 /* imageCropPicker.xcodeproj */,
+				56410A77758645DAAC639860 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1298,23 +1298,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1337,23 +1330,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1378,11 +1364,11 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1406,11 +1392,11 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1441,23 +1427,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1488,23 +1467,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;
@@ -1534,23 +1506,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Debug;
@@ -1580,23 +1545,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-onesignal\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 			};
 			name = Release;

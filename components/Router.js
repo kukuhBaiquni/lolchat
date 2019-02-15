@@ -23,6 +23,6 @@ const RootStack = createStackNavigator({
       header: null
     })
   }
-}, {initialRouteName: 'TestScreen'});
+}, {initialRouteName: 'Login'});
 
 export const Navigator = createAppContainer(RootStack);

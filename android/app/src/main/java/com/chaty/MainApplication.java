@@ -3,11 +3,11 @@ package com.chaty;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -19,6 +19,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
 import android.content.Intent;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +40,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFirebasePackage(),
+            new RNFirebaseAuthPackage(),
             new PickerPackage(),
             new ImagePickerPackage(),
             new VectorIconsPackage(),
-            new ReactNativeOneSignalPackage(),
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),
             new FBSDKPackage(mCallbackManager)
