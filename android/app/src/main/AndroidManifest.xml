@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -48,6 +49,18 @@
           <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
       </receiver>
+      <receiver android:name="io.invertase.firebase.notifications.RNFirebaseBackgroundNotificationActionReceiver" android:exported="true">
+        <intent-filter>
+          <action android:name="io.invertase.firebase.notifications.BackgroundAction"/>
+        </intent-filter>
+      </receiver>
+      <receiver android:name=".NetworkChangeReceiver" >
+        <intent-filter>
+          <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        </intent-filter>
+      </receiver>
+      <service android:name="com.chaty.BgProcessing" android:enabled="true" android:label="BgProcessing" />
+      <service android:name="io.invertase.firebase.notifications.RNFirebaseBackgroundNotificationActionsService"/>
     </application>
 
 </manifest>

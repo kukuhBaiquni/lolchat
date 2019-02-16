@@ -4,6 +4,7 @@ import Login from './screens/Login';
 import ChatRoom from './screens/ChatRoom';
 import TestScreen from './screens/TestScreen';
 import TestPhone from './screens/TestPhone';
+import Notifications from './screens/Notifications';
 
 const RootStack = createStackNavigator({
   Login: {
@@ -20,16 +21,22 @@ const RootStack = createStackNavigator({
   },
   TestScreen: {
     screen: TestScreen,
-    navigationOptions: ({navigatio}) => ({
+    navigationOptions: ({navigation}) => ({
       header: null
     })
   },
   TestPhone: {
     screen: TestPhone,
-    navigationOptions: ({navigatio}) => ({
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+  Notifications: {
+    screen: Notifications,
+    navigationOptions: ({navigation}) => ({
       header: null
     })
   }
-}, {initialRouteName: 'TestPhone'});
+}, {initialRouteName: 'Notifications'});
 
 export const Navigator = createAppContainer(RootStack);
