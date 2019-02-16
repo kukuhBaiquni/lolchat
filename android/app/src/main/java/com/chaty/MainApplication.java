@@ -3,6 +3,7 @@ package com.chaty;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import iyegoroff.RNColorMatrixImageFilters.ColorMatrixImageFiltersPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -42,6 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ColorMatrixImageFiltersPackage(),
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(),
             new RNFirebaseMessagingPackage(),

@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-color-matrix-image-filters')
     implementation project(':react-native-firebase')
     implementation "com.google.firebase:firebase-core:16.0.6"
     implementation 'com.google.firebase:firebase-messaging:17.3.3'
