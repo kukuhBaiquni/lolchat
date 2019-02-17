@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Login from './screens/Login';
 import ChatRoom from './screens/ChatRoom';
-import TestScreen from './screens/TestScreen';
+import Profile from './screens/profile/main';
 import TestPhone from './screens/TestPhone';
 import Notifications from './screens/Notifications';
 
@@ -19,8 +19,8 @@ const RootStack = createStackNavigator({
       header: null
     })
   },
-  TestScreen: {
-    screen: TestScreen,
+  Profile: {
+    screen: Profile,
     navigationOptions: ({navigation}) => ({
       header: null
     })
@@ -37,6 +37,6 @@ const RootStack = createStackNavigator({
       header: null
     })
   }
-}, {initialRouteName: 'Notifications'});
+}, {initialRouteName: 'Profile'});
 
 export const Navigator = createAppContainer(RootStack);

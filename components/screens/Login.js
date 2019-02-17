@@ -15,6 +15,8 @@ export default class Login extends Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.logout()} style={{height: 80, width: 250, backgroundColor: '#5ed9ff', justifyContent: 'center', alignItems: 'center'}}>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')} style={{height: 80, width: 250, backgroundColor: '#5ed9ff', justifyContent: 'center', alignItems: 'center'}}>
+        </TouchableOpacity>
       </View>
     )
   }
