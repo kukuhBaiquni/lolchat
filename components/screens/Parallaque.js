@@ -9,6 +9,44 @@ import {
   View,
   Dimensions,
 } from 'react-native';
+import {
+  ColorMatrix,
+  concatColorMatrices,
+  rgba,
+  saturate,
+  hueRotate,
+  luminanceToAlpha,
+  invert,
+  grayscale,
+  sepia,
+  nightvision,
+  warm,
+  cool,
+  brightness,
+  contrast,
+  temperature,
+  tint,
+  threshold,
+  technicolor,
+  polaroid,
+  toBGR,
+  kodachrome,
+  browni,
+  vintage,
+  night,
+  predator,
+  lsd,
+  colorTone,
+  duoTone,
+  protanomaly,
+  deuteranomaly,
+  tritanomaly,
+  protanopia,
+  deuteranopia,
+  tritanopia,
+  achromatopsia,
+  achromatomaly
+} from 'react-native-color-matrix-image-filters';
 
 const {
   height: SCREEN_HEIGHT,
@@ -171,8 +209,8 @@ class RNParallax extends Component {
 
   elevation() {
     return this.state.scrollY.interpolate({
-      inputRange: [0, 245, 245],
-      outputRange: [0, 0, 0],
+      inputRange: [0, 350, 360],
+      outputRange: [0, 0, 4],
       extrapolate: 'clamp'
     })
   }
@@ -226,17 +264,57 @@ class RNParallax extends Component {
     const imageScale = this.getImageScale();
     return (
       <View>
-        <Animated.Image
-          style={[
-            styles.backgroundImage,
-            {
-              height: this.getHeaderMaxHeight(),
-              opacity: imageOpacity,
-              transform: [{ translateY: imageTranslate }, { scale: imageScale }],
-            },
-          ]}
-          source={backgroundImage}
-        />
+        <ColorMatrix
+          matrix={concatColorMatrices(
+            [
+              rgba(1, 1, 1, 1),
+              saturate(1),
+              hueRotate(0),
+              // luminanceToAlpha(),
+              // invert(),
+              grayscale(0),
+              sepia(0),
+              // nightvision(),
+              // warm(),
+              // cool(),
+              brightness(1),
+              contrast(1),
+              temperature(0),
+              tint(0),
+              // threshold(0),
+              // technicolor(),
+              // polaroid(),
+              // toBGR(),
+              // kodachrome(),
+              // browni(),
+              // vintage(),
+              // night(1),
+              // predator(0),
+              // lsd(),
+              // colorTone(0.2, 0.5, '#FFE580', '#338000'),
+              // duoTone('#FFE580', '#338000'),
+              // protanomaly(),
+              // deuteranomaly(),
+              // tritanomaly(),
+              // protanopia(),
+              // deuteranopia(),
+              // tritanopia(),
+              // achromatomaly()
+            ]
+          )}
+          >
+          <Animated.Image
+            style={[
+              styles.backgroundImage,
+              {
+                height: this.getHeaderMaxHeight(),
+                opacity: imageOpacity,
+                transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+              },
+            ]}
+            source={backgroundImage}
+            />
+        </ColorMatrix>
       </View>
     );
   }
