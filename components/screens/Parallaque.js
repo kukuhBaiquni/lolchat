@@ -8,6 +8,7 @@ import {
   Text,
   View,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import {
   ColorMatrix,
@@ -201,8 +202,8 @@ class RNParallax extends Component {
   // title background color transition from white to red
   transparency() {
     return this.state.scrollY.interpolate({
-      inputRange: [0, 0, 245],
-      outputRange: ['rgba(255,255,255, 0)', 'rgba(255,255,255, 1)', 'rgba(255,255,255, 1)'],
+      inputRange: [0, 345, 360],
+      outputRange: ['rgba(255,255,255, 0)', 'rgba(255,255,255, 0)', 'rgba(0,0,0, 0.5)'],
       extrapolate: 'clamp'
     })
   }
@@ -226,7 +227,8 @@ class RNParallax extends Component {
               { translateY: this.getTitleTranslate() },
             ],
             height: 65,
-            elevation: this.elevation()
+            elevation: this.elevation(),
+            backgroundColor: this.transparency()
           },
         ]}
       >
@@ -318,6 +320,25 @@ class RNParallax extends Component {
       </View>
     );
   }
+
+  // renderPlainBackground() {
+  //   const { backgroundColor } = this.props;
+  //
+  //   const imageOpacity = this.getImageOpacity();
+  //   const imageTranslate = this.getImageTranslate();
+  //   const imageScale = this.getImageScale();
+  //
+  //   return (
+  //     <Animated.View
+  //       style={{
+  //         height: this.getHeaderMaxHeight(),
+  //         backgroundColor,
+  //         opacity: imageOpacity,
+  //         transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+  //       }}
+  //     />
+  //   );
+  // }
 
   renderNavbarBackground() {
     const { navbarColor } = this.props;

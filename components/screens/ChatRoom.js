@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import firebase from 'react-native-firebase';
+import Gestures from 'react-native-easy-gestures';
 
 export default class ChatRoom extends Component {
   constructor(props) {
@@ -26,15 +27,12 @@ export default class ChatRoom extends Component {
   }
 
   render() {
-    console.log(firebase);
     return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text onPress={() => this.startProcess()}>ChatRoom</Text>
-        {
-          this.state.imageHandler !== '' &&
-          <Image source={{uri: this.state.imageHandler}} style={{height: 90, width: 90, borderRadius: 30}} resizeMode='contain' />
-        }
-      </View>
+      <Gestures>
+        <View style={{height: 300, width: 300, backgroundColor: 'cyan', justifyContent: 'center', alignItems: 'center'}}>
+            <Text onPress={() => this.startProcess()}>ChatRoom</Text>
+        </View>
+      </Gestures>
     )
   }
 }

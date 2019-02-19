@@ -1,115 +1,183 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, Animated, Dimensions, Slider } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as Animatable from 'react-native-animatable';
+import Color from './color';
+import Swiper from 'react-native-swiper';
+
+const list = [
+  {title: 'Tombol Kembali', icon: 'mail-reply'},
+  {title: 'Tombol Menu Foto', icon: 'ellipsis-v'},
+  {title: 'Foto Sampul', icon: 'photo'},
+  {title: 'Foto Profil', icon: 'user-circle-o'},
+  {title: 'Nama di Header', icon: 'buysellads'},
+  {title: 'Nama di Display', icon: 'font'},
+  {title: 'Nama di Obrolan', icon: 'comment'},
+  {title: 'Nama di Postingan', icon: 'file-text-o'},
+  {title: 'Quote Judul', icon: 'quote-right'},
+  {title: 'Quote Isi', icon: 'wpforms'},
+  {title: 'Informasi Umum', icon: 'eye'}
+];
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export default class ComponentStyling extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      animationSwitch: true
+      showPanel: true,
+      translateY: new Animated.Value(330),
+      translateY2: new Animated.Value(0)
     }
   }
 
-  componentWillUnmount() {
-    this.setState({animationSwitch: false})
+  slideUp() {
+    this.setState({showPanel: false})
+    const { translateY } = this.state;
+    Animated.timing(translateY, {
+      toValue: 250,
+      duration: 250,
+      useNativeDriver: true,
+    }).start()
+  }
+
+  slideDown() {
+    this.setState({showPanel: true})
+    const { translateY } = this.state;
+    Animated.timing(translateY, {
+      toValue: -5,
+      duration: 250,
+      useNativeDriver: true,
+    }).start()
+  }
+
+  hidePanel() {
+    this.setState({showPanel: true})
+    const { translateY, translateY2 } = this.state;
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: 330,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY2, {
+        toValue: 0,
+        delay: 250,
+        duration: 250,
+        useNativeDriver: true,
+      })
+    ]).start()
+  }
+
+  showPanel() {
+    const { translateY, translateY2 } = this.state;
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: -5,
+        delay: 250,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY2, {
+        toValue: 70,
+        duration: 250,
+        useNativeDriver: true,
+      })
+    ]).start()
   }
 
   render() {
-    console.log(this.props);
+    const gabon = Array(50).fill('gabon')
     return(
-      <Animatable.View
-        style={{width: '100%', height: 260, position: 'absolute', right: 0, left: 0, bottom: 0, backgroundColor: 'black', alignItems: 'center'}}
-        animation={this.state.animationSwitch ? 'fadeIn' : 'fadeOut'}
-        duration={500}
-        useNativeDriver
-        >
-        <View style={{width: '95%', height: 50, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomColor: 'white', borderBottomWidth: 1}}>
-          <Text style={{color: 'white', fontSize: 18}}>Pilih Komponen</Text>
-          <TouchableOpacity onPress={() => this.props.switchEditStyle()} style={{width: 30}}>
-            <Icon name='remove' size={21} color='white' />
+      <View>
+        <Animated.View style={{position: 'absolute', bottom: 10, right: 10, transform: [{translateY: this.state.translateY2}]}}>
+          <TouchableOpacity onPress={() => this.showPanel()} style={{height: 50, width: 50, backgroundColor: '#444f60', borderRadius: 25, justifyContent: 'center', alignItems: 'center'}}>
+            <Icon name='magic' color='white' size={20} />
           </TouchableOpacity>
-        </View>
-        <ScrollView style={{width: '100%'}}>
-          <View style={{width: '60%'}}>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='mail-reply' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Tombol Kembali</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='ellipsis-v' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Tombol Menu Foto</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='photo' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Foto Sampul</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='user-circle-o' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Foto Profil</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='font' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Nama di Header</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='font' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Nama di Display</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='font' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Nama di Obrolan</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='font' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Nama di Postingan</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='quote-right' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Quote Judul</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='quote-right' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Quote isi</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
-              <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name='eye' size={21} color='white' />
-              </View>
-              <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>Informasi Umum</Text>
-            </TouchableOpacity>
-            <BackButton semfaq='master' />
+        </Animated.View>
+        <Animated.View
+          style={{width: '100%', position: 'absolute', right: 0, left: 0, bottom: 0, alignItems: 'center', transform: [{translateY: this.state.translateY}]}}
+          >
+          <Animated.View style={{width: '95%', height: 50, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', marginBottom: 5, backgroundColor: '#444f60', borderRadius: 5}}>
+            <Text style={{color: 'white', fontSize: 18, marginLeft: 10, fontWeight: 'bold'}}>Pilih Komponen</Text>
+            <View style={{width: 65, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row'}}>
+              {
+                this.state.showPanel
+                ?
+                <TouchableOpacity style={{width: 30}} onPress={() => this.slideUp()}>
+                  <Icon name='window-minimize' size={18} color='white' />
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={{width: 30}} onPress={() => this.slideDown()}>
+                  <Icon name='window-maximize' size={17} color='white' />
+                </TouchableOpacity>
+              }
+              <TouchableOpacity style={{width: 30}} onPress={() => this.hidePanel()}>
+                <Icon name='remove' size={23} color='white' />
+              </TouchableOpacity>
+            </View>
+          </Animated.View>
+
+          <View style={{width: '100%'}}>
+            <ListComponent />
           </View>
-        </ScrollView>
-      </Animatable.View>
+        </Animated.View>
+      </View>
     )
   }
 }
 
+class ListComponent extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      main: 'fadeIn',
+    }
+  }
+  render() {
+    return (
+      <View style={{width: '100%', alignItems: 'center'}}>
+        <View style={{width: '95%', backgroundColor: '#444f60', borderRadius: 5, height: 250}}>
+          <BackButton />
+        </View>
+      </View>
+    )
+  }
+}
+// {
+//   list.map((x, i) =>
+//   <TouchableOpacity key={i} style={{flexDirection: 'row', height: 40, paddingLeft: 10, alignItems: 'center'}}>
+//     <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center'}}>
+//       <Icon name={x.icon} size={21} color='white' />
+//     </View>
+//     <Text style={{color: 'white', marginLeft: 10, fontSize: 18}}>{x.title}</Text>
+//   </TouchableOpacity>
+// )
+// }
+
 const BackButton = (props) => {
-  console.log(props);
   return (
-    <View style={{height: 50, width: 50, backgroundColor: 'cyan'}}>
+    <View style={{width: '100%', alignItems: 'center'}}>
+      <View style={{backgroundColor: '#444f60', height: 250, borderRadius: 5, width: '95%'}}>
+        <TouchableOpacity style={{flexDirection: 'row', height: 40, alignItems: 'center'}}>
+          <Text style={{color: 'white', fontSize: 18}}>Tombol Kembali</Text>
+          <View style={{height: 22, width: 22, justifyContent: 'center', alignItems: 'center', marginLeft: 10}}>
+            <Icon name='mail-reply' size={21} color='white' />
+          </View>
+        </TouchableOpacity>
+        <ScrollView scrollEnabled={false} style={{padding: 5}}>
+          <Color />
+          <View style={{marginBottom: 10}}>
+            <Text style={{color: 'white', fontSize: 16, marginBottom: 10}}>Ukuran</Text>
+            <Slider
+              style={{width: 300}}
+              minimumValue={1}
+              maximumValue={10}
+              step={1}
+              />
+          </View>
+        </ScrollView>
+      </View>
     </View>
   )
 }
