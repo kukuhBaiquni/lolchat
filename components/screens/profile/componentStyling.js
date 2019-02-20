@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, ScrollView, Animated, Dimensions, Slider } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Color from './color';
-import Swiper from 'react-native-swiper';
+import { ColorPicker, toHsv } from 'react-native-color-picker';
 
 const list = [
   {title: 'Tombol Kembali', icon: 'mail-reply'},
@@ -91,7 +90,7 @@ export default class ComponentStyling extends Component {
     return(
       <View>
         <Animated.View style={{position: 'absolute', bottom: 10, right: 10, transform: [{translateY: this.state.translateY2}]}}>
-          <TouchableOpacity onPress={() => this.showPanel()} style={{height: 50, width: 50, backgroundColor: '#444f60', borderRadius: 25, justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Settings')} style={{height: 50, width: 50, backgroundColor: '#444f60', borderRadius: 25, justifyContent: 'center', alignItems: 'center'}}>
             <Icon name='magic' color='white' size={20} />
           </TouchableOpacity>
         </Animated.View>
@@ -131,14 +130,21 @@ class ListComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      main: 'fadeIn',
+      color: toHsv('green')
     }
   }
+
   render() {
     return (
       <View style={{width: '100%', alignItems: 'center'}}>
-        <View style={{width: '95%', backgroundColor: '#444f60', borderRadius: 5, height: 250}}>
-          <BackButton />
+        <View style={{width: '95%', backgroundColor: '#444f60', borderRadius: 5, height: 250, paddingTop: 25}}>
+          <ColorPicker
+            color={this.state.color}
+            onColorChange={(color) => this.setState({color})}
+            onColorSelected={color => alert(`Color selected: ${color}`)}
+            onOldColorSelected={color => alert(`Old color selected: ${color}`)}
+            style={{height: 200}}
+            />
         </View>
       </View>
     )
@@ -165,18 +171,7 @@ const BackButton = (props) => {
             <Icon name='mail-reply' size={21} color='white' />
           </View>
         </TouchableOpacity>
-        <ScrollView scrollEnabled={false} style={{padding: 5}}>
-          <Color />
-          <View style={{marginBottom: 10}}>
-            <Text style={{color: 'white', fontSize: 16, marginBottom: 10}}>Ukuran</Text>
-            <Slider
-              style={{width: 300}}
-              minimumValue={1}
-              maximumValue={10}
-              step={1}
-              />
-          </View>
-        </ScrollView>
+
       </View>
     </View>
   )

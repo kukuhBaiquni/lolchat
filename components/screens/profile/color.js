@@ -16,14 +16,14 @@ export default class Color extends Component {
 
   render() {
     return(
-      <View style={{flex: 1, padding: 15, height: 150, borderRadius: 5}}>
+      <View style={{height: 100}}>
         <ColorPicker
           color={this.state.color}
           onColorChange={(x) => this.onColorChange(x)}
           onColorSelected={color => alert(`Color selected: ${color}`)}
           onOldColorSelected={color => alert(`Old color selected: ${color}`)}
-          style={{flex: 1}}
-        />
+          style={{height: 150}}
+          />
       </View>
     )
   }

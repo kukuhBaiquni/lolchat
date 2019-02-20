@@ -80,7 +80,7 @@ export default class Profile extends Component {
               </View>
               <View style={{width: SCREEN_WIDTH * 0.15, height: 65, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row'}}>
                 <TouchableOpacity onPress={() => this.pickCoverPicture()} style={{height: 65, width: 65, alignItems: 'center', justifyContent: 'center'}}>
-                  <Icon name='plus' color='white' size={20} />
+                  <Icon name='ellipsis-v' color='white' size={22} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -157,7 +157,7 @@ export default class Profile extends Component {
             </ScrollView>
           )}
         />
-        <ComponentStyling />
+        <ComponentStyling navigation={this.props.navigation} />
       </View>
     )
   }

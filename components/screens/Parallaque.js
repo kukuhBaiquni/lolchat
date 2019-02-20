@@ -203,7 +203,7 @@ class RNParallax extends Component {
   transparency() {
     return this.state.scrollY.interpolate({
       inputRange: [0, 345, 360],
-      outputRange: ['rgba(255,255,255, 0)', 'rgba(255,255,255, 0)', 'rgba(0,0,0, 0.5)'],
+      outputRange: ['rgba(255,255,255, 0)', 'rgba(255,255,255, 0)', 'rgba(255,255,255, 0.2)'],
       extrapolate: 'clamp'
     })
   }

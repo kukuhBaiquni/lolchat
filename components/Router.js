@@ -5,6 +5,32 @@ import ChatRoom from './screens/ChatRoom';
 import Profile from './screens/profile/main';
 import TestPhone from './screens/TestPhone';
 import Notifications from './screens/Notifications';
+import Settings from './screens/profile/settings';
+import SettingDetails from './screens/profile/settingDetails';
+
+
+const ProfileStack = createStackNavigator({
+  Main: {
+    screen: Profile,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+  SettingDetails: {
+    screen: SettingDetails,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  }
+}, {initialRouteName: 'Main'})
+
+const ProfileContainer = createAppContainer(ProfileStack)
 
 const RootStack = createStackNavigator({
   Login: {
@@ -20,7 +46,7 @@ const RootStack = createStackNavigator({
     })
   },
   Profile: {
-    screen: Profile,
+    screen: ProfileContainer,
     navigationOptions: ({navigation}) => ({
       header: null
     })
