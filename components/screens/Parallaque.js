@@ -69,7 +69,7 @@ const DEFAULT_TITLE_COLOR = 'white';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     flex: 1,
   },
   scrollView: {
@@ -260,7 +260,7 @@ class RNParallax extends Component {
   }
 
   renderBackgroundImage() {
-    const { backgroundImage } = this.props;
+    const { backgroundImage, filterList } = this.props;
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
@@ -268,41 +268,7 @@ class RNParallax extends Component {
       <View>
         <ColorMatrix
           matrix={concatColorMatrices(
-            [
-              rgba(1, 1, 1, 1),
-              saturate(1),
-              hueRotate(0),
-              // luminanceToAlpha(),
-              // invert(),
-              grayscale(0),
-              sepia(0),
-              // nightvision(),
-              // warm(),
-              // cool(),
-              brightness(1),
-              contrast(1),
-              temperature(0),
-              tint(0),
-              // threshold(0),
-              // technicolor(),
-              // polaroid(),
-              // toBGR(),
-              // kodachrome(),
-              // browni(),
-              // vintage(),
-              // night(1),
-              // predator(0),
-              // lsd(),
-              // colorTone(0.2, 0.5, '#FFE580', '#338000'),
-              // duoTone('#FFE580', '#338000'),
-              // protanomaly(),
-              // deuteranomaly(),
-              // tritanomaly(),
-              // protanopia(),
-              // deuteranopia(),
-              // tritanopia(),
-              // achromatomaly()
-            ]
+            filterList
           )}
           >
           <Animated.Image
@@ -368,8 +334,8 @@ class RNParallax extends Component {
           styles.header,
           {
             height: this.getHeaderHeight(),
-            opacity: imageOpacity,
-            backgroundColor: backgroundImage ? 'pink' : backgroundColor,
+            opacity: 5,
+            backgroundColor: 'black',
           },
         ]}
       >
@@ -400,7 +366,7 @@ class RNParallax extends Component {
     return (
       <View style={styles.container}>
         {this.renderScrollView()}
-        {this.renderHeaderBackground()}
+          {this.renderHeaderBackground()}
         {this.renderHeaderTitle()}
         {this.renderHeaderForeground()}
       </View>
@@ -423,6 +389,7 @@ RNParallax.propTypes = {
   scrollEventThrottle: PropTypes.number,
   extraScrollHeight: PropTypes.number,
   backgroundImageScale: PropTypes.number,
+  filterList: PropTypes.array
 };
 
 RNParallax.defaultProps = {
@@ -440,6 +407,43 @@ RNParallax.defaultProps = {
   scrollEventThrottle: SCROLL_EVENT_THROTTLE,
   extraScrollHeight: DEFAULT_EXTRA_SCROLL_HEIGHT,
   backgroundImageScale: DEFAULT_BACKGROUND_IMAGE_SCALE,
+  filterList: []
 };
 
 export default RNParallax;
+
+[
+  rgba(1, 1, 1, 1),
+  saturate(1),
+  hueRotate(0),
+  luminanceToAlpha(),
+  invert(),
+  grayscale(0),
+  sepia(0),
+  nightvision(),
+  warm(),
+  cool(),
+  brightness(1),
+  contrast(1),
+  temperature(0),
+  tint(0),
+  threshold(0),
+  technicolor(),
+  polaroid(),
+  toBGR(),
+  kodachrome(),
+  browni(),
+  vintage(),
+  night(1),
+  predator(0),
+  lsd(),
+  colorTone(0.2, 0.5, '#FFE580', '#338000'),
+  duoTone('#FFE580', '#338000'),
+  protanomaly(),
+  deuteranomaly(),
+  tritanomaly(),
+  protanopia(),
+  deuteranopia(),
+  tritanopia(),
+  achromatomaly()
+]

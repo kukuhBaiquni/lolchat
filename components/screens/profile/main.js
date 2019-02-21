@@ -6,6 +6,7 @@ import Settings from '../Settings';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ComponentStyling from './componentStyling';
 import UserInfo from './userInfo';
+import { rgba } from 'react-native-color-matrix-image-filters';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
@@ -19,8 +20,10 @@ export default class Profile extends Component {
       userNameColor: 'white',
       profilePicture: 'http://invisioncommunity.co.uk/wp-content/uploads/2015/10/elesis_crimson_avenger.jpg',
       isEditingName: false,
-      fontFamily: 'Ubuntu-Title'
+      fontFamily: 'Ubuntu-Title',
+      filterList: [rgba(1,1,1,1)]
     }
+    this.filterPusher = this.filterPusher.bind(this)
   }
 
   pickCoverPicture() {
@@ -52,6 +55,11 @@ export default class Profile extends Component {
     });
   }
 
+  filterPusher(x) {
+    const clone = [...this.state.filterList, x]
+    this.setState({filterList: clone})
+  }
+
   render() {
     const dummy = Array(30).fill('Gabon');
     return(
@@ -65,6 +73,7 @@ export default class Profile extends Component {
           headerMaxHeight={300}
           extraScrollHeight={20}
           scrollEventThrottle={5}
+          filterList={this.state.filterList}
           title={this.state.userNameDisplay}
           titleFont='BOYCOTT_'
           titleSize={25}
@@ -157,7 +166,7 @@ export default class Profile extends Component {
             </ScrollView>
           )}
         />
-        <ComponentStyling navigation={this.props.navigation} />
+        <ComponentStyling filterPusher={this.filterPusher} navigation={this.props.navigation} />
       </View>
     )
   }
