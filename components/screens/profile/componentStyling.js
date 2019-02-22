@@ -79,6 +79,7 @@ export default class ComponentStyling extends Component {
   }
 
   render() {
+    console.log(this.state.filterList);
     const { h, s, v } = this.state;
     return(
       <View>
@@ -112,7 +113,7 @@ export default class ComponentStyling extends Component {
           <View style={{width: '100%', alignItems: 'center'}}>
             <View style={{width: '95%', backgroundColor: '#7a7a7a', paddingTop: 5, borderRadius: 5, height: 250, alignItems: 'center'}}>
               <ScrollView style={{width: '100%'}}>
-                <View style={{width: '100%', alignItems: 'center'}}>
+                <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
                   {
                     filterList.map((x, i) =>
                       <View key={i} style={{width: '95%', borderRadius: 3, backgroundColor: '#d1d1d1', elevation: 3, marginTop: 5}}>
@@ -130,7 +131,7 @@ export default class ComponentStyling extends Component {
                               maximumValue={1}
                               minimumValue={0}
                               step={0.02}
-                              onValueChange={(v) => this.setState({v})}
+                              onValueChange={(v) => 'this.setState({v})'}
                               />
                           </View>
                         </TouchableNativeFeedback>

@@ -120,6 +120,7 @@ class RNParallax extends Component {
     super();
     this.state = {
       scrollY: new Animated.Value(0),
+      r:1, g:1, b:1, a:1
     };
   }
 
@@ -216,6 +217,14 @@ class RNParallax extends Component {
     })
   }
 
+  filter() {
+    return this.state.scrollY.interpolate({
+      inputRange: [0, 100],
+      outputRange: [1, 0],
+      extrapolate: 'clamp'
+    })
+  }
+
   renderHeaderTitle() {
     const { title, titleFont, titleSize, renderBackButton, titleColor } = this.props;
     return (
@@ -260,15 +269,34 @@ class RNParallax extends Component {
   }
 
   renderBackgroundImage() {
-    const { backgroundImage, filterList } = this.props;
+    const { backgroundImage } = this.props;
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
+    const { scrollY } = this.state;
     return (
       <View>
         <ColorMatrix
           matrix={concatColorMatrices(
-            filterList
+            [
+              rgba(1,1,1,1),
+              saturate(1),
+              hueRotate(0),
+              // invert(),
+              grayscale(0),
+              sepia(0),
+              // nightvision(),
+              brightness(1),
+              contrast(1),
+              temperature(0),
+              tint(0),
+              // threshold(15),
+              // technicolor(),
+              // kodachrome(),
+              // colorTone(0.2, 0.5, '#FFE580', '#338000'),
+              // duoTone('#FFE580', '#338000'),
+              // protanomaly(),
+            ]
           )}
           >
           <Animated.Image
@@ -411,39 +439,3 @@ RNParallax.defaultProps = {
 };
 
 export default RNParallax;
-
-[
-  rgba(1, 1, 1, 1),
-  saturate(1),
-  hueRotate(0),
-  luminanceToAlpha(),
-  invert(),
-  grayscale(0),
-  sepia(0),
-  nightvision(),
-  warm(),
-  cool(),
-  brightness(1),
-  contrast(1),
-  temperature(0),
-  tint(0),
-  threshold(0),
-  technicolor(),
-  polaroid(),
-  toBGR(),
-  kodachrome(),
-  browni(),
-  vintage(),
-  night(1),
-  predator(0),
-  lsd(),
-  colorTone(0.2, 0.5, '#FFE580', '#338000'),
-  duoTone('#FFE580', '#338000'),
-  protanomaly(),
-  deuteranomaly(),
-  tritanomaly(),
-  protanopia(),
-  deuteranopia(),
-  tritanopia(),
-  achromatomaly()
-]
