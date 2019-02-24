@@ -120,7 +120,6 @@ class RNParallax extends Component {
     super();
     this.state = {
       scrollY: new Animated.Value(0),
-      r:1, g:1, b:1, a:1
     };
   }
 
@@ -269,7 +268,7 @@ class RNParallax extends Component {
   }
 
   renderBackgroundImage() {
-    const { backgroundImage } = this.props;
+    const { backgroundImage, layerPreset, layerFilter, filterC } = this.props;
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
@@ -277,39 +276,43 @@ class RNParallax extends Component {
     return (
       <View>
         <ColorMatrix
-          matrix={concatColorMatrices(
-            [
-              rgba(1,1,1,1),
-              saturate(1),
-              hueRotate(0),
-              // invert(),
-              grayscale(0),
-              sepia(0),
-              // nightvision(),
-              brightness(1),
-              contrast(1),
-              temperature(0),
-              tint(0),
-              // threshold(15),
-              // technicolor(),
-              // kodachrome(),
-              // colorTone(0.2, 0.5, '#FFE580', '#338000'),
-              // duoTone('#FFE580', '#338000'),
-              // protanomaly(),
-            ]
-          )}
+          matrix={
+            filterC.length !== 0
+            ?
+            concatColorMatrices(filterC)
+            :
+            concatColorMatrices([rgba(1,1,1,1)])
+          }
           >
-          <Animated.Image
-            style={[
-              styles.backgroundImage,
-              {
-                height: this.getHeaderMaxHeight(),
-                opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }, { scale: imageScale }],
-              },
-            ]}
-            source={backgroundImage}
-            />
+          {
+            layerPreset.length !== 0
+            ?
+            <ColorMatrix matrix={concatColorMatrices(layerPreset)}>
+              <Animated.Image
+                style={[
+                  styles.backgroundImage,
+                  {
+                    height: this.getHeaderMaxHeight(),
+                    opacity: imageOpacity,
+                    transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+                  },
+                ]}
+                source={backgroundImage}
+                />
+            </ColorMatrix>
+            :
+            <Animated.Image
+              style={[
+                styles.backgroundImage,
+                {
+                  height: this.getHeaderMaxHeight(),
+                  opacity: imageOpacity,
+                  transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+                },
+              ]}
+              source={backgroundImage}
+              />
+          }
         </ColorMatrix>
       </View>
     );
@@ -394,7 +397,7 @@ class RNParallax extends Component {
     return (
       <View style={styles.container}>
         {this.renderScrollView()}
-          {this.renderHeaderBackground()}
+        {this.renderHeaderBackground()}
         {this.renderHeaderTitle()}
         {this.renderHeaderForeground()}
       </View>
