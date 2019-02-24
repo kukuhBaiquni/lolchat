@@ -39,6 +39,7 @@ export const filterList = [
   {
     name: 'RGBA',
     active: false,
+    defaultValue: [1,1,1,1],
     value: [1,1,1,1],
     index: 0,
     range: {min: 0, max: 1},
@@ -54,6 +55,7 @@ export const filterList = [
   {
     name: 'Saturate',
     active: false,
+    defaultValue: [1],
     value: [1],
     index: 1,
     range: {min: 0, max: 2},
@@ -64,6 +66,7 @@ export const filterList = [
   {
     name: 'Hue Rotate',
     active: false,
+    defaultValue: [0],
     value: [0],
     index: 2,
     range: {min: -5, max: 5},
@@ -74,6 +77,7 @@ export const filterList = [
   {
     name: 'Grayscale',
     active: false,
+    defaultValue: [0],
     value: [0],
     index: 3,
     range: {min: 0, max: 1},
@@ -84,6 +88,7 @@ export const filterList = [
   {
     name: 'Sepia',
     active: false,
+    defaultValue: [0],
     value: [0],
     index: 4,
     range: {min: 0, max: 1},
@@ -94,6 +99,7 @@ export const filterList = [
   {
     name: 'Brightness',
     active: false,
+    defaultValue: [1],
     value: [1],
     index: 5,
     range: {min: 0.3, max: 2},
@@ -104,6 +110,7 @@ export const filterList = [
   {
     name: 'Contrast',
     active: false,
+    defaultValue: [1],
     value: [1],
     index: 6,
     range: {min: 0.5, max: 2},
@@ -114,6 +121,7 @@ export const filterList = [
   {
     name: 'Temperature',
     active: false,
+    defaultValue: [0],
     value: [0],
     index: 7,
     range: {min: -2, max: 2},
@@ -124,6 +132,7 @@ export const filterList = [
   {
     name: 'Tint',
     active: false,
+    defaultValue: [0],
     value: [0],
     index: 8,
     range: {min: -1, max: 1},

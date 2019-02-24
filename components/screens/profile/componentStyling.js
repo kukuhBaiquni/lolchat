@@ -11,9 +11,6 @@ export default class ComponentStyling extends Component {
       showPanel: true,
       translateY: new Animated.Value(330),
       translateY2: new Animated.Value(0),
-      h: 0, s: 0, v: 0,
-      filterIndexHeight: -1,
-      filterHeightExpanded: new Animated.Value(40)
     }
   }
 
@@ -161,7 +158,7 @@ export default class ComponentStyling extends Component {
                           onPress={(x) => this.expander(i)}
                           background={TouchableNativeFeedback.Ripple('green')}>
                           <Animated.View style={{height: x.isExpanded ? 60+(23*x.value.length) : 40}}>
-                            <View style={styles.filterWrapper}>
+                            <View style={{justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', height: 40}}>
                               <Text style={{marginLeft: 10, fontSize: 15, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
                               <View>
                                 <Switch

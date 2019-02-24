@@ -21,15 +21,8 @@ export default class Profile extends Component {
       userNameColor: 'white',
       profilePicture: 'http://invisioncommunity.co.uk/wp-content/uploads/2015/10/elesis_crimson_avenger.jpg',
       isEditingName: false,
-      fontFamily: 'Ubuntu-Title',
-      layerFilter: filterList,
-      layerPreset: [],
-      filterC: []
+      fontFamily: 'Ubuntu-Title'
     }
-    this.presetPusher = this.presetPusher.bind(this)
-    this.filterController = this.filterController.bind(this)
-    this.expandWrapper = this.expandWrapper.bind(this)
-    this.filterActivator = this.filterActivator.bind(this)
   }
 
   pickCoverPicture() {
@@ -61,22 +54,6 @@ export default class Profile extends Component {
     });
   }
 
-  presetPusher(x) {
-    this.setState({layerPreset: x})
-  }
-
-  filterController(p, x) {
-    this.setState({layerFilter: p, filterC: x})
-  }
-
-  expandWrapper(x) {
-    this.setState({layerFilter: x})
-  }
-
-  filterActivator(x, y) {
-    this.setState({layerFilter: x, filterC: y})
-  }
-
   render() {
     const dummy = Array(30).fill('Gabon');
     return(
@@ -90,9 +67,6 @@ export default class Profile extends Component {
           headerMaxHeight={300}
           extraScrollHeight={20}
           scrollEventThrottle={5}
-          filterC={this.state.filterC}
-          layerFilter={this.state.layerFilter}
-          layerPreset={this.state.layerPreset}
           title={this.state.userNameDisplay}
           titleFont='BOYCOTT_'
           titleSize={25}
@@ -185,16 +159,6 @@ export default class Profile extends Component {
             </ScrollView>
           )}
         />
-        <ComponentStyling
-          filterC={this.state.filterC}
-          layerFilter={this.state.layerFilter}
-          layerPreset={this.state.layerPreset}
-          filterActivator={this.filterActivator}
-          filterController={this.filterController}
-          expandWrapper={this.expandWrapper}
-          presetPusher={this.presetPusher}
-          navigation={this.props.navigation}
-          />
       </View>
     )
   }
