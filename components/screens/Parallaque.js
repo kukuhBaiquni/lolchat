@@ -437,10 +437,10 @@ class RNParallax extends Component {
 
   triggerChange() {
     if (this.state.pos) {
-      this.scroll.getNode().scrollTo({y: this.state.scrollY._value + 1, animated: true});
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value + 0.5, animated: true});
       this.setState({pos: false})
     }else{
-      this.scroll.getNode().scrollTo({y: this.state.scrollY._value -1, animated: true});
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value -0.5, animated: true});
       this.setState({pos: true})
     }
   }

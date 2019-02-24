@@ -4,7 +4,6 @@ import RNParallax from '../Parallaque';
 import ImagePicker from 'react-native-image-crop-picker';
 import Settings from '../Settings';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ComponentStyling from './componentStyling';
 import UserInfo from './userInfo';
 import { rgba } from 'react-native-color-matrix-image-filters';
 import { filterList } from '../schema';
