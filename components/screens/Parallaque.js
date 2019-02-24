@@ -128,6 +128,7 @@ class RNParallax extends Component {
       translateY2: new Animated.Value(0),
       layerFilter: filterList,
       layerPreset: [],
+      pos: true
     };
   }
 
@@ -420,6 +421,7 @@ class RNParallax extends Component {
     const { renderContent, scrollEventThrottle } = this.props;
     return (
       <Animated.ScrollView
+        ref={(c) => {this.scroll = c}}
         style={styles.scrollView}
         scrollEventThrottle={scrollEventThrottle}
         onScroll={Animated.event(
@@ -433,11 +435,22 @@ class RNParallax extends Component {
     );
   }
 
+  triggerChange() {
+    if (this.state.pos) {
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value + 1, animated: true});
+      this.setState({pos: false})
+    }else{
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value -1, animated: true});
+      this.setState({pos: true})
+    }
+  }
+
   sliderController(p, x, y, z) {
     //p: value x: prevValue, y: indexFilter, z: indexValue
     let clone = [...this.state.layerFilter];
     clone[y].value[z] = p;
     this.setState({layerFilter: clone})
+    this.triggerChange()
   }
 
   expander(x) {
@@ -452,12 +465,13 @@ class RNParallax extends Component {
       let result = [...this.state.layerPreset];
       result.push(i.fn)
       this.setState({layerPreset: result})
-      this.forceUpdate()
+      this.triggerChange()
     }else{
       let result = [...this.state.layerPreset];
       const index = result.indexOf(i.fn)
       result.splice(index, 1)
       this.setState({layerPreset: result})
+      this.triggerChange()
     }
   }
 
@@ -470,6 +484,7 @@ class RNParallax extends Component {
       result[i].active = x;
       result[i].value = [...result[i].defaultValue];
       this.setState({layerFilter: result})
+      this.triggerChange()
     }
   }
 
