@@ -6,7 +6,7 @@ import Profile from './screens/profile/main';
 import TestPhone from './screens/TestPhone';
 import Notifications from './screens/Notifications';
 import Settings from './screens/profile/settings';
-import AFK from './screens/profile/afk';
+import SettingDetails from './screens/profile/settingDetails';
 
 
 const ProfileStack = createStackNavigator({
@@ -22,8 +22,8 @@ const ProfileStack = createStackNavigator({
       header: null
     })
   },
-  Afk: {
-    screen: AFK,
+  SettingDetails: {
+    screen: SettingDetails,
     navigationOptions: ({navigation}) => ({
       header: null
     })

@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ComponentStyling from './componentStyling';
 import UserInfo from './userInfo';
 import { rgba } from 'react-native-color-matrix-image-filters';
-import { filterList } from '../schema';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 
@@ -22,14 +21,9 @@ export default class Profile extends Component {
       profilePicture: 'http://invisioncommunity.co.uk/wp-content/uploads/2015/10/elesis_crimson_avenger.jpg',
       isEditingName: false,
       fontFamily: 'Ubuntu-Title',
-      layerFilter: filterList,
-      layerPreset: [],
-      filterC: []
+      filterList: [rgba(1,1,1,1)]
     }
-    this.presetPusher = this.presetPusher.bind(this)
-    this.filterController = this.filterController.bind(this)
-    this.expandWrapper = this.expandWrapper.bind(this)
-    this.filterActivator = this.filterActivator.bind(this)
+    this.filterPusher = this.filterPusher.bind(this)
   }
 
   pickCoverPicture() {
@@ -61,20 +55,9 @@ export default class Profile extends Component {
     });
   }
 
-  presetPusher(x) {
-    this.setState({layerPreset: x})
-  }
-
-  filterController(p, x) {
-    this.setState({layerFilter: p, filterC: x})
-  }
-
-  expandWrapper(x) {
-    this.setState({layerFilter: x})
-  }
-
-  filterActivator(x, y) {
-    this.setState({layerFilter: x, filterC: y})
+  filterPusher(x) {
+    const clone = [...this.state.filterList, x]
+    this.setState({filterList: clone})
   }
 
   render() {
@@ -90,9 +73,7 @@ export default class Profile extends Component {
           headerMaxHeight={300}
           extraScrollHeight={20}
           scrollEventThrottle={5}
-          filterC={this.state.filterC}
-          layerFilter={this.state.layerFilter}
-          layerPreset={this.state.layerPreset}
+          filterList={this.state.filterList}
           title={this.state.userNameDisplay}
           titleFont='BOYCOTT_'
           titleSize={25}
@@ -185,16 +166,7 @@ export default class Profile extends Component {
             </ScrollView>
           )}
         />
-        <ComponentStyling
-          filterC={this.state.filterC}
-          layerFilter={this.state.layerFilter}
-          layerPreset={this.state.layerPreset}
-          filterActivator={this.filterActivator}
-          filterController={this.filterController}
-          expandWrapper={this.expandWrapper}
-          presetPusher={this.presetPusher}
-          navigation={this.props.navigation}
-          />
+        <ComponentStyling filterPusher={this.filterPusher} navigation={this.props.navigation} />
       </View>
     )
   }
