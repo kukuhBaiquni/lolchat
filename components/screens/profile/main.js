@@ -20,10 +20,15 @@ export default class Profile extends Component {
       userNameColor: 'white',
       profilePicture: 'http://invisioncommunity.co.uk/wp-content/uploads/2015/10/elesis_crimson_avenger.jpg',
       isEditingName: false,
+<<<<<<< HEAD
       fontFamily: 'Ubuntu-Title',
       filterList: [rgba(1,1,1,1)]
     }
     this.filterPusher = this.filterPusher.bind(this)
+=======
+      fontFamily: 'Ubuntu-Title'
+    }
+>>>>>>> Backup
   }
 
   pickCoverPicture() {
@@ -55,11 +60,14 @@ export default class Profile extends Component {
     });
   }
 
+<<<<<<< HEAD
   filterPusher(x) {
     const clone = [...this.state.filterList, x]
     this.setState({filterList: clone})
   }
 
+=======
+>>>>>>> Backup
   render() {
     const dummy = Array(30).fill('Gabon');
     return(
@@ -73,7 +81,10 @@ export default class Profile extends Component {
           headerMaxHeight={300}
           extraScrollHeight={20}
           scrollEventThrottle={5}
+<<<<<<< HEAD
           filterList={this.state.filterList}
+=======
+>>>>>>> Backup
           title={this.state.userNameDisplay}
           titleFont='BOYCOTT_'
           titleSize={25}
@@ -166,7 +177,10 @@ export default class Profile extends Component {
             </ScrollView>
           )}
         />
+<<<<<<< HEAD
         <ComponentStyling filterPusher={this.filterPusher} navigation={this.props.navigation} />
+=======
+>>>>>>> Backup
       </View>
     )
   }

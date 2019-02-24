@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { presetList, filterList } from './schema';
 import {
   StyleSheet,
   Platform,
@@ -8,7 +9,8 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Slider, TouchableNativeFeedback, Switch,
 } from 'react-native';
 import {
   ColorMatrix,
@@ -48,6 +50,7 @@ import {
   achromatopsia,
   achromatomaly
 } from 'react-native-color-matrix-image-filters';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {
   height: SCREEN_HEIGHT,
@@ -120,8 +123,68 @@ class RNParallax extends Component {
     super();
     this.state = {
       scrollY: new Animated.Value(0),
-      r:1, g:1, b:1, a:1
+      showPanel: true,
+      translateY: new Animated.Value(330),
+      translateY2: new Animated.Value(0),
+      layerFilter: filterList,
+      layerPreset: [],
+      pos: true
     };
+  }
+
+  slideUp() {
+    this.setState({showPanel: false})
+    const { translateY } = this.state;
+    Animated.timing(translateY, {
+      toValue: 250,
+      duration: 250,
+      useNativeDriver: true,
+    }).start()
+  }
+
+  slideDown() {
+    this.setState({showPanel: true})
+    const { translateY } = this.state;
+    Animated.timing(translateY, {
+      toValue: -5,
+      duration: 250,
+      useNativeDriver: true,
+    }).start()
+  }
+
+  hidePanel() {
+    this.setState({showPanel: true})
+    const { translateY, translateY2 } = this.state;
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: 330,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY2, {
+        toValue: 0,
+        delay: 250,
+        duration: 250,
+        useNativeDriver: true,
+      })
+    ]).start()
+  }
+
+  showPanel() {
+    const { translateY, translateY2 } = this.state;
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: -5,
+        delay: 250,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY2, {
+        toValue: 70,
+        duration: 250,
+        useNativeDriver: true,
+      })
+    ]).start()
   }
 
   getHeaderMaxHeight() {
@@ -217,14 +280,6 @@ class RNParallax extends Component {
     })
   }
 
-  filter() {
-    return this.state.scrollY.interpolate({
-      inputRange: [0, 100],
-      outputRange: [1, 0],
-      extrapolate: 'clamp'
-    })
-  }
-
   renderHeaderTitle() {
     const { title, titleFont, titleSize, renderBackButton, titleColor } = this.props;
     return (
@@ -273,32 +328,21 @@ class RNParallax extends Component {
     const imageOpacity = this.getImageOpacity();
     const imageTranslate = this.getImageTranslate();
     const imageScale = this.getImageScale();
-    const { scrollY } = this.state;
+    const { scrollY, layerPreset, layerFilter } = this.state;
     return (
       <View>
-        <ColorMatrix
-          matrix={concatColorMatrices(
-            [
-              rgba(1,1,1,1),
-              saturate(1),
-              hueRotate(0),
-              // invert(),
-              grayscale(0),
-              sepia(0),
-              // nightvision(),
-              brightness(1),
-              contrast(1),
-              temperature(0),
-              tint(0),
-              // threshold(15),
-              // technicolor(),
-              // kodachrome(),
-              // colorTone(0.2, 0.5, '#FFE580', '#338000'),
-              // duoTone('#FFE580', '#338000'),
-              // protanomaly(),
-            ]
-          )}
-          >
+        <ColorMatrix matrix={concatColorMatrices([
+            rgba(...layerFilter[0].value),
+            saturate(...layerFilter[1].value),
+            hueRotate(...layerFilter[2].value),
+            grayscale(...layerFilter[3].value),
+            sepia(...layerFilter[4].value),
+            brightness(...layerFilter[5].value),
+            contrast(...layerFilter[6].value),
+            temperature(...layerFilter[7].value),
+            tint(...layerFilter[8].value),
+            ...this.state.layerPreset
+          ])}>
           <Animated.Image
             style={[
               styles.backgroundImage,
@@ -315,24 +359,24 @@ class RNParallax extends Component {
     );
   }
 
-  // renderPlainBackground() {
-  //   const { backgroundColor } = this.props;
-  //
-  //   const imageOpacity = this.getImageOpacity();
-  //   const imageTranslate = this.getImageTranslate();
-  //   const imageScale = this.getImageScale();
-  //
-  //   return (
-  //     <Animated.View
-  //       style={{
-  //         height: this.getHeaderMaxHeight(),
-  //         backgroundColor,
-  //         opacity: imageOpacity,
-  //         transform: [{ translateY: imageTranslate }, { scale: imageScale }],
-  //       }}
-  //     />
-  //   );
-  // }
+  renderPlainBackground() {
+    const { backgroundColor } = this.props;
+
+    const imageOpacity = this.getImageOpacity();
+    const imageTranslate = this.getImageTranslate();
+    const imageScale = this.getImageScale();
+
+    return (
+      <Animated.View
+        style={{
+          height: this.getHeaderMaxHeight(),
+          backgroundColor,
+          opacity: imageOpacity,
+          transform: [{ translateY: imageTranslate }, { scale: imageScale }],
+        }}
+      />
+    );
+  }
 
   renderNavbarBackground() {
     const { navbarColor } = this.props;
@@ -368,7 +412,7 @@ class RNParallax extends Component {
         ]}
       >
         {backgroundImage && this.renderBackgroundImage()}
-        {/*{!backgroundImage && this.renderPlainBackground()}*/}
+        {!backgroundImage && this.renderPlainBackground()}
       </Animated.View>
     );
   }
@@ -377,6 +421,7 @@ class RNParallax extends Component {
     const { renderContent, scrollEventThrottle } = this.props;
     return (
       <Animated.ScrollView
+        ref={(c) => {this.scroll = c}}
         style={styles.scrollView}
         scrollEventThrottle={scrollEventThrottle}
         onScroll={Animated.event(
@@ -390,13 +435,175 @@ class RNParallax extends Component {
     );
   }
 
+  triggerChange() {
+    if (this.state.pos) {
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value + 1, animated: true});
+      this.setState({pos: false})
+    }else{
+      this.scroll.getNode().scrollTo({y: this.state.scrollY._value -1, animated: true});
+      this.setState({pos: true})
+    }
+  }
+
+  sliderController(p, x, y, z) {
+    //p: value x: prevValue, y: indexFilter, z: indexValue
+    let clone = [...this.state.layerFilter];
+    clone[y].value[z] = p;
+    this.setState({layerFilter: clone})
+    this.triggerChange()
+  }
+
+  expander(x) {
+    let result = [...this.state.layerFilter];
+    result[x].isExpanded = !result[x].isExpanded
+    this.setState({layerFilter: result})
+  }
+
+  injectPreset(w, i, x) {
+    // w: index, i: data, x: value
+    if (x) {
+      let result = [...this.state.layerPreset];
+      result.push(i.fn)
+      this.setState({layerPreset: result})
+      this.triggerChange()
+    }else{
+      let result = [...this.state.layerPreset];
+      const index = result.indexOf(i.fn)
+      result.splice(index, 1)
+      this.setState({layerPreset: result})
+      this.triggerChange()
+    }
+  }
+
+  toggleActivator(i, x) {
+    let result = [...this.state.layerFilter];
+    if (x) {
+      result[i].active = x;
+      this.setState({layerFilter: result})
+    }else{
+      result[i].active = x;
+      result[i].value = [...result[i].defaultValue];
+      this.setState({layerFilter: result})
+      this.triggerChange()
+    }
+  }
+
   render() {
+    const { layerFilter, layerPreset, showPanel } = this.state;
     return (
       <View style={styles.container}>
         {this.renderScrollView()}
           {this.renderHeaderBackground()}
         {this.renderHeaderTitle()}
         {this.renderHeaderForeground()}
+        <View>
+          <Animated.View style={{position: 'absolute', bottom: 10, right: 10, transform: [{translateY: this.state.translateY2}]}}>
+            <TouchableOpacity onPress={() => this.showPanel()} style={{height: 50, width: 50, backgroundColor: 'black', borderRadius: 25, justifyContent: 'center', alignItems: 'center'}}>
+              <Icon name='magic' color='white' size={20} />
+            </TouchableOpacity>
+          </Animated.View>
+          <Animated.View
+            style={{width: '100%', position: 'absolute', right: 0, left: 0, bottom: 0, alignItems: 'center', transform: [{translateY: this.state.translateY}]}}
+            >
+            <Animated.View style={{width: '95%', height: 50, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', marginBottom: 5, backgroundColor: 'black', borderRadius: 5}}>
+              <Text style={{color: 'white', fontSize: 18, marginLeft: 10, fontWeight: 'bold'}}>Pilih Filter</Text>
+              <View style={{width: 65, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row'}}>
+                {
+                  showPanel
+                  ?
+                  <TouchableOpacity style={{width: 30}} onPress={() => this.slideUp()}>
+                    <Icon name='window-minimize' size={18} color='white' />
+                  </TouchableOpacity>
+                  :
+                  <TouchableOpacity style={{width: 30}} onPress={() => this.slideDown()}>
+                    <Icon name='window-maximize' size={17} color='white' />
+                  </TouchableOpacity>
+                }
+                <TouchableOpacity style={{width: 30}} onPress={() => this.hidePanel()}>
+                  <Icon name='remove' size={23} color='white' />
+                </TouchableOpacity>
+              </View>
+            </Animated.View>
+            <View style={{width: '100%', alignItems: 'center'}}>
+              <View style={{width: '95%', backgroundColor: 'black', paddingTop: 5, borderRadius: 5, height: 250, alignItems: 'center'}}>
+                <ScrollView style={{width: '100%', marginBottom: 5}}>
+                  <View style={{width: '100%', alignItems: 'center'}}>
+                    {
+                      layerFilter.map((x, i) =>
+                        <View key={i} style={{width: '95%', borderRadius: 3, backgroundColor: 'white', elevation: 3, marginTop: 5}}>
+                          <TouchableNativeFeedback
+                            onPress={(x) => this.expander(i)}
+                            background={TouchableNativeFeedback.Ripple('green')}>
+                            <Animated.View style={{height: x.isExpanded ? 60+(23*x.value.length) : 40}}>
+                              <View style={{justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', height: 40}}>
+                                <Text style={{marginLeft: 10, fontSize: 15, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
+                                <View>
+                                  <Switch
+                                    thumbColor={x.active ? '#258e26': '#999999'}
+                                    trackColor={{false: '#b2b2b2', true: '#a6c4a7'}}
+                                    value={x.active}
+                                    onValueChange={this.toggleActivator.bind(this, i)}
+                                    />
+                                </View>
+                              </View>
+                              <View style={{alignItems: 'center'}}>
+                              {
+                                x.isExpanded &&
+                                  x.value.map((z, r) =>
+                                    <View key={r} style={{flexDirection:'row', width: '90%', alignItems: 'center', justifyContent: 'space-between'}}>
+                                      <Text>{x.slider[r].text}</Text>
+                                      <Slider
+                                        disabled={!x.active}
+                                        thumbTintColor={x.slider[r].color}
+                                        minimumTrackTintColor={x.slider[r].color}
+                                        style={{width: 250, marginTop: 8}}
+                                        value={layerFilter[i].value[r]}
+                                        maximumValue={x.range.max}
+                                        minimumValue={x.range.min}
+                                        step={x.step}
+                                        onSlidingComplete={(p, x, c, a) => this.sliderController(p, z, i, r)}
+                                        />
+                                    </View>
+                                  )
+                              }
+                              </View>
+                            </Animated.View>
+                          </TouchableNativeFeedback>
+                        </View>
+                      )
+                    }
+                    {
+                      presetList.map((x, i) =>
+                        <View key={i} style={{width: '95%', borderRadius: 3, backgroundColor: 'white', elevation: 3, marginTop: 5}}>
+                          <TouchableNativeFeedback
+                            background={TouchableNativeFeedback.Ripple('#a8a8a8')}>
+                            <View style={{height: 40, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'}}>
+                              <View style={{alignItems: 'center', flexDirection: 'row'}}>
+                                <Text style={{marginLeft: 10, fontSize: 15, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
+                                <View style={{marginLeft: 20, padding: 3, borderRadius: 5, borderWidth: 1, borderColor: '#258e26', backgroundColor: '#d1ffd1'}}>
+                                  <Text style={{color: '#258e26', fontSize: 9}}>Preset</Text>
+                                </View>
+                              </View>
+                              <View>
+                                <Switch
+                                  disabled={layerPreset.indexOf(x.fn) === -1 && layerPreset.length > 0}
+                                  thumbColor={layerPreset.indexOf(x.fn) !== -1 ? '#258e26' : '#999999'}
+                                  trackColor={{false: '#b2b2b2', true: '#a6c4a7'}}
+                                  value={layerPreset.indexOf(x.fn) !== -1}
+                                  onValueChange={this.injectPreset.bind(this, i, x)}
+                                  />
+                              </View>
+                            </View>
+                          </TouchableNativeFeedback>
+                        </View>
+                      )
+                    }
+                  </View>
+                </ScrollView>
+              </View>
+            </View>
+          </Animated.View>
+        </View>
       </View>
     );
   }

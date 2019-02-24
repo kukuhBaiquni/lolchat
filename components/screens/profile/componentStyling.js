@@ -11,8 +11,11 @@ export default class ComponentStyling extends Component {
       showPanel: true,
       translateY: new Animated.Value(330),
       translateY2: new Animated.Value(0),
+<<<<<<< HEAD
       h: 0, s: 0, v: 0,
       filterList
+=======
+>>>>>>> Backup
     }
   }
 
@@ -118,9 +121,64 @@ export default class ComponentStyling extends Component {
                     filterList.map((x, i) =>
                       <View key={i} style={{width: '95%', borderRadius: 3, backgroundColor: '#d1d1d1', elevation: 3, marginTop: 5}}>
                         <TouchableNativeFeedback
+<<<<<<< HEAD
                           background={TouchableNativeFeedback.Ripple('#f4f4f4')}>
                           <View style={{height: 50, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'}}>
                             <Text style={{marginLeft: 10, fontSize: 18, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
+=======
+                          onPress={(x) => this.expander(i)}
+                          background={TouchableNativeFeedback.Ripple('green')}>
+                          <Animated.View style={{height: x.isExpanded ? 60+(23*x.value.length) : 40}}>
+                            <View style={{justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', height: 40}}>
+                              <Text style={{marginLeft: 10, fontSize: 15, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
+                              <View>
+                                <Switch
+                                  thumbColor={x.active ? '#258e26': '#999999'}
+                                  trackColor={{false: '#b2b2b2', true: '#a6c4a7'}}
+                                  value={x.active}
+                                  onValueChange={this.toggleActivator.bind(this, i)}
+                                  />
+                              </View>
+                            </View>
+                            <View style={{alignItems: 'center'}}>
+                            {
+                              x.isExpanded &&
+                                x.value.map((z, r) =>
+                                  <View key={r} style={{flexDirection:'row', width: '90%', alignItems: 'center', justifyContent: 'space-between'}}>
+                                    <Text>{x.slider[r].text}</Text>
+                                    <Slider
+                                      disabled={!x.active}
+                                      thumbTintColor={x.slider[r].color}
+                                      minimumTrackTintColor={x.slider[r].color}
+                                      style={{width: 250, marginTop: 8}}
+                                      value={layerFilter[i].value[r]}
+                                      maximumValue={x.range.max}
+                                      minimumValue={x.range.min}
+                                      step={x.step}
+                                      onSlidingComplete={(p, x, c, a) => this.sliderController(p, z, i, r)}
+                                      />
+                                  </View>
+                                )
+                            }
+                            </View>
+                          </Animated.View>
+                        </TouchableNativeFeedback>
+                      </View>
+                    )
+                  }
+                  {
+                    presetList.map((x, i) =>
+                      <View key={i} style={{width: '95%', borderRadius: 3, backgroundColor: 'white', elevation: 3, marginTop: 5}}>
+                        <TouchableNativeFeedback
+                          background={TouchableNativeFeedback.Ripple('#a8a8a8')}>
+                          <View style={{height: 40, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'}}>
+                            <View style={{alignItems: 'center', flexDirection: 'row'}}>
+                              <Text style={{marginLeft: 10, fontSize: 15, fontWeight: 'bold', color: '#7a7a7a'}}>{x.name}</Text>
+                              <View style={{marginLeft: 20, padding: 3, borderRadius: 5, borderWidth: 1, borderColor: '#258e26', backgroundColor: '#d1ffd1'}}>
+                                <Text style={{color: '#258e26', fontSize: 9}}>Preset</Text>
+                              </View>
+                            </View>
+>>>>>>> Backup
                             <View>
                               <Switch trackColor={{false: '#777777', true: '#f4f4f4'}} value={this.state.filterList[i].active} onValueChange={this.injectFilter.bind(this, i, x)} />
                             </View>
