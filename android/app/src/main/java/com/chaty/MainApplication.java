@@ -46,8 +46,6 @@ public class MainApplication extends Application implements ReactApplication {
             new ColorMatrixImageFiltersPackage(),
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(),
-            new RNFirebaseMessagingPackage(),
-            new RNFirebaseNotificationsPackage(),
             new PickerPackage(),
             new ImagePickerPackage(),
             new VectorIconsPackage(),

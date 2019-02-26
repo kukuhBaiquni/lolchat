@@ -4,7 +4,6 @@ import Login from './screens/Login';
 import ChatRoom from './screens/ChatRoom';
 import Profile from './screens/profile/main';
 import TestPhone from './screens/TestPhone';
-import Notifications from './screens/Notifications';
 import Settings from './screens/profile/settings';
 import SettingDetails from './screens/profile/settingDetails';
 
@@ -53,12 +52,6 @@ const RootStack = createStackNavigator({
   },
   TestPhone: {
     screen: TestPhone,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    })
-  },
-  Notifications: {
-    screen: Notifications,
     navigationOptions: ({navigation}) => ({
       header: null
     })

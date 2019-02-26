@@ -140,7 +140,6 @@ dependencies {
     implementation project(':react-native-color-matrix-image-filters')
     implementation project(':react-native-firebase')
     implementation "com.google.firebase:firebase-core:16.0.6"
-    implementation 'com.google.firebase:firebase-messaging:17.3.3'
     implementation "com.google.firebase:firebase-auth:16.1.0"
     implementation "com.google.android.gms:play-services-base:16.0.1"
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
