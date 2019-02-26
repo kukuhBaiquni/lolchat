@@ -6,7 +6,6 @@ import { store } from '../store';
 import { StatusBar } from 'react-native';
 
 export default class Wrapper extends Component {
-
   componentDidMount() {
     SplashScreen.hide();
   }

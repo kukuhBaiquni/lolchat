@@ -42,7 +42,7 @@ export const filterList = [
     defaultValue: [1,1,1,1],
     value: [1,1,1,1],
     index: 0,
-    range: {min: 0, max: 1},
+    range: {min: 0, max: 2},
     step: 0.01,
     slider: [
       {text: 'Red', color: '#ff3d46'},

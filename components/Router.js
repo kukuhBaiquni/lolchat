@@ -63,6 +63,6 @@ const RootStack = createStackNavigator({
       header: null
     })
   }
-}, {initialRouteName: 'Profile'});
+}, {initialRouteName: 'ChatRoom'});
 
 export const Navigator = createAppContainer(RootStack);

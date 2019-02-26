@@ -20,20 +20,16 @@ export default class Profile extends Component {
       profilePicture: 'http://invisioncommunity.co.uk/wp-content/uploads/2015/10/elesis_crimson_avenger.jpg',
       isEditingName: false,
       fontFamily: 'Ubuntu-Title',
-      filterList: [rgba(1,1,1,1)]
-    }
-    this.filterPusher = this.filterPusher.bind(this)
       fontFamily: 'Ubuntu-Title'
     }
   }
 
   pickCoverPicture() {
     ImagePicker.openPicker({
-      width: 1200,
-      height: 1200,
+      width: 600,
+      height: 500,
       cropping: true,
-      includeBase64: true,
-      enableRotationGesture: true
+      includeBase64: true
     }).then(image => {
       const x =`data:${image.mime};base64,${image.data}`;
       this.setState({coverPicture: x})
@@ -54,11 +50,6 @@ export default class Profile extends Component {
       this.setState({profilePicture: x})
     }).catch( err => {
     });
-  }
-
-  filterPusher(x) {
-    const clone = [...this.state.filterList, x]
-    this.setState({filterList: clone})
   }
 
   render() {
