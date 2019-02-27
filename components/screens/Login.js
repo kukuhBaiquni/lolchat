@@ -31,7 +31,7 @@ export default class Login extends Component {
                 <Icon name='user-circle-o' color='black' size={20} />
               </View>
               <TextInput
-                style={[styles.textInputValue, {width: '80%'}]}
+                style={[styles.textInputValue, {width: '85%'}]}
                 maxLength={35}
                 keyboardType='email-address'
                 placeholder='Email / Username'
@@ -61,40 +61,43 @@ export default class Login extends Component {
               </View>
             </TouchableNativeFeedback>
           </View>
+           <View style={{marginTop: 20, alignItems: 'center'}}>
+             <Text style={styles.forgotPasswordText}>Lupa Password?
+               <Text style={{color: '#00f5d0'}}> Tap Disini | Daftar</Text>
+             </Text>
+           </View>
           <View style={{marginTop: 20, alignItems: 'center'}}>
-            <Text style={[styles.forgotPasswordText, {fontSize: 20}]}>ATAU</Text>
+            <Text style={[styles.forgotPasswordText, {fontSize: 15}]}>ATAU</Text>
           </View>
           <View style={{alignItems: 'center'}}>
             <View style={styles.sosmedWrapper}>
-              <TouchableOpacity style={[styles.sosmedTouchArea, {backgroundColor: '#3175c4'}]}>
-                <Icon name='facebook' color='white' size={20} />
+              <TouchableOpacity style={styles.sosmedTouchArea}>
+                <Icon name='facebook-official' color='#3175c4' size={35} />
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.sosmedTouchArea, {backgroundColor: '#c43131'}]}>
-                <Icon name='google-plus' color='white' size={20} />
+              <TouchableOpacity style={styles.sosmedTouchArea}>
+                <Icon name='google-plus-square' color='#c43131' size={35} />
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.sosmedTouchArea, {backgroundColor: '#1aa320'}]}>
-                <Icon name='phone' color='white' size={20} />
+              <TouchableOpacity style={styles.sosmedTouchArea}>
+                <Icon name='phone-square' color='#1aa320' size={35} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{marginTop: 20, alignItems: 'center'}}>
-            <Text style={styles.forgotPasswordText}>Lupa Password?
-              <Text style={{color: '#00f5d0'}}> Tap Disini</Text>
-            </Text>
-          </View>
-          <View style={{marginTop: 10, alignItems: 'center'}}>
-            <Text style={styles.forgotPasswordText}>Belum Punya Akun?
-              <Text style={{color: '#00f5d0'}}> Tap Disini</Text>
-            </Text>
-          </View>
-        </View>
-        <View style={styles.footerContainer}>
-          <Text style={styles.appVerText}>App version 1.0.0</Text>
         </View>
       </View>
     )
   }
 }
+
+
+// <View style={{marginTop: 10, alignItems: 'center'}}>
+//   <Text style={styles.forgotPasswordText}>Belum Punya Akun?
+//     <Text style={{color: '#00f5d0'}}> Tap Disini</Text>
+//   </Text>
+// </View>
+// <View style={styles.footerContainer}>
+//   <Text style={styles.appVerText}>App version 1.0.0</Text>
+// </View>
+
 
 const styles = StyleSheet.create({
   container: {
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     width: '100%',
-    height: 50,
+    height: 40,
     backgroundColor: 'white',
     borderRadius: 25,
     marginTop: 10,
@@ -125,8 +128,8 @@ const styles = StyleSheet.create({
     borderColor: '#00f5d0'
   },
   textInputIcon: {
-    height: 40,
-    width: 40,
+    height: 30,
+    width: 30,
     backgroundColor: '#00f5d0',
     borderRadius: 20,
     justifyContent: 'center',
@@ -135,19 +138,19 @@ const styles = StyleSheet.create({
     borderColor: '#cecece'
   },
   textInputValue: {
-    width: '62%',
+    width: '67%',
     height: 45,
     fontSize: 16,
     fontFamily: 'JosefinSans-Bold',
     justifyContent: 'center'
   },
   loginText: {
-    fontSize: 35,
+    fontSize: 25,
     fontFamily: 'AllerDisplay'
   },
   touchableArea: {
     width: '100%',
-    height: 50,
+    height: 40,
     backgroundColor: '#00f5d0',
     borderRadius: 25,
     justifyContent: 'center',
@@ -172,21 +175,22 @@ const styles = StyleSheet.create({
   submitText: {
     color: 'white',
     fontFamily: 'AllerDisplay',
-    fontSize: 22
+    fontSize: 18
   },
   sosmedWrapper: {
-    marginTop: 20,
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
-    width: '60%'
+    width: '100%',
+    padding: 20,
   },
   sosmedTouchArea: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
+    height: 32,
+    width: 32,
+    borderRadius: 3,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white'
   },
   appVerText: {
     color: 'white',
