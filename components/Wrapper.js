@@ -1,4 +1,4 @@
-import { Navigator } from './Router';
+import WrapperLevel from './WrapperLevel';
 import React, { Component } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
@@ -17,7 +17,7 @@ export default class Wrapper extends Component {
           backgroundColor='black'
           barStyle='light-content'
           />
-        <Navigator />
+        <WrapperLevel />
       </Provider>
     )
   }

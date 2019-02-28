@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableNativeFeedback, FlatList, Dimensions, TextInput, StyleSheet, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-import { url } from '../../config/DefaultEndPoint';
-import io from 'socket.io-client';
 import { YellowBox } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 YellowBox.ignoreWarnings([
@@ -19,17 +17,6 @@ export default class ChatRoom extends Component {
       imageHandler: '',
       height: 0
     }
-    this.socket = io(url);
-    this.socket.on('terimapesan', (data) => {
-      console.log(data);
-    });
-    this.sendMessage = () => {
-      this.socket.emit('kirimpesan', {
-        name: 'Gabon',
-        message: 'Cimeng'
-      })
-    }
-
   }
 
   startProcess() {
