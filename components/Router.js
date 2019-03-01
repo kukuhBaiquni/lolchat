@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Login from './screens/Login';
+import Login from './screens/login/Login';
+import Register from './screens/register/Register';
 import ChatRoom from './screens/ChatRoom';
 import Profile from './screens/profile/main';
 import TestPhone from './screens/TestPhone';
 import Settings from './screens/profile/settings';
 import SettingDetails from './screens/profile/settingDetails';
-
+import TestUpload from './TestUpload';
 
 const ProfileStack = createStackNavigator({
   Main: {
@@ -55,7 +56,19 @@ const RootStack = createStackNavigator({
     navigationOptions: ({navigation}) => ({
       header: null
     })
-  }
-}, {initialRouteName: 'Login'});
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+  TestUpload: {
+    screen: TestUpload,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+}, {initialRouteName: 'TestUpload'});
 
 export const Navigator = createAppContainer(RootStack);
