@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableNativeFeedback, TextInput, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableNativeFeedback, TextInput, Dimensions, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { facebookLogin } from '../../../config/FacebookLogin';
 import { fonts } from '../../../config/FontList';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,18 +21,18 @@ export default class Login extends Component {
 
   fbLogin = async () => {
     var data = await facebookLogin()
-    console.log(data);
   }
 
   render() {
     return(
       <View style={styles.container}>
+        <StatusBar barStyle='light-content' backgroundColor='black' />
         <Text style={[{color:'white'}, styles.loginText]}>
           <Text style={[styles.loginText, {color: '#00f5d0'}]}>M</Text>asuk..
         </Text>
         <View style={{width: SCREEN_WIDTH*0.85}}>
           <View>
-            <TouchableNativeFeedback background={TouchableNativeFeedback.Ripple('black')}>
+            <TouchableNativeFeedback onPress={() => setTimeout(() => {this.props.navigation.navigate('LoginViaPhone')}, 100)} background={TouchableNativeFeedback.Ripple('black')}>
               <View style={[styles.textInputContainer, {backgroundColor: '#388e11'}]}>
                 <Text style={[styles.loginText, {color: 'white', fontSize: 17}]}>Masuk dengan Handphone</Text>
               </View>

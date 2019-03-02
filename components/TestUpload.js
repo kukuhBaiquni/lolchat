@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableNativeFeedback, Dimensions, Platform, ScrollView } from 'react-native';
 import ajax from '../config/Fetch';
-import { url } from '../config/DefaultEndPoint'
+import { url } from '../config/ServerUrl'
 import ImageResizer from 'react-native-image-resizer';
 import ImagePicker from 'react-native-image-picker';
 
@@ -51,6 +51,11 @@ export default class TestUpload extends Component {
         name: 'random'
       });
     })
+    form.append('name', 'Cimeng');
+    form.append('age', Number(27));
+    form.append('gender', 'Ganda Campuran');
+    form.append('phone', Number(700));
+    form.append('education', 'Mulung');
     ajax(`${url}upload`, {
       method: 'post',
       body: form

@@ -4,7 +4,7 @@ import Login from './screens/login/Login';
 import Register from './screens/register/Register';
 import ChatRoom from './screens/ChatRoom';
 import Profile from './screens/profile/main';
-import TestPhone from './screens/TestPhone';
+import LoginViaPhone from './screens/login/LoginViaPhone';
 import Settings from './screens/profile/settings';
 import SettingDetails from './screens/profile/settingDetails';
 import TestUpload from './TestUpload';
@@ -30,13 +30,32 @@ const ProfileStack = createStackNavigator({
   }
 }, {initialRouteName: 'Main'})
 
-const ProfileContainer = createAppContainer(ProfileStack)
+const ProfileContainer = createAppContainer(ProfileStack);
 
 const RootStack = createStackNavigator({
   Login: {
     screen: Login,
     navigationOptions: ({navigation}) => ({
       header: null
+    })
+  },
+  LoginViaPhone: {
+    screen: LoginViaPhone,
+    navigationOptions: ({navigation}) => ({
+      headerTintColor: '#00f5d0',
+      headerStyle: {
+        backgroundColor: 'black'
+      },
+    })
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: ({navigation}) => ({
+      title: 'Gabon',
+      headerTintColor: '#00f5d0',
+      headerStyle: {
+        backgroundColor: 'black'
+      },
     })
   },
   ChatRoom: {
@@ -47,12 +66,6 @@ const RootStack = createStackNavigator({
   },
   Profile: {
     screen: ProfileContainer,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    })
-  },
-  TestPhone: {
-    screen: TestPhone,
     navigationOptions: ({navigation}) => ({
       header: null
     })
@@ -69,6 +82,6 @@ const RootStack = createStackNavigator({
       header: null
     })
   },
-}, {initialRouteName: 'TestUpload'});
+}, {initialRouteName: 'Login'});
 
 export const Navigator = createAppContainer(RootStack);
