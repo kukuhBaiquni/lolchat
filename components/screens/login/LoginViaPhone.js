@@ -77,11 +77,13 @@ class LoginViaPhone extends Component {
     this.setState({ message: 'Mengirim kode verifikasi ...' });
 
     firebase.auth()
-    .signInWithPhoneNumber(phoneNumber)
+    .signInWithPhoneNumber('+62' + phoneNumber)
     .then((confirmResult) => {
       this.setState({confirmResult, message: ''})
       const userPhone = confirmResult._auth._user._user.phoneNumber;
-      this.props.dispatch(checkPhoneNumber(userPhone))
+      if (userPhone === '+62' + phoneNumber) {
+        this.props.dispatch(checkPhoneNumber(userPhone))
+      }
     })
     .catch(error => this.setState({ message: `Nomor Handphone yang kamu masukan tidak valid` }));
   };
@@ -92,7 +94,8 @@ class LoginViaPhone extends Component {
     if (confirmResult && codeInput.length) {
       confirmResult.confirm(codeInput)
       .then((user) => {
-        console.log(user);
+        const userPhone = user._user.phoneNumber;
+        this.props.dispatch(checkPhoneNumber(userPhone))
       })
       .catch(error => this.setState({ message: `Konfirmasi kode gagal` }));
     }
@@ -107,15 +110,20 @@ class LoginViaPhone extends Component {
 
     return (
       <View style={{ padding: 25}}>
-        <Text style={{fontFamily: 'AllerDisplay', fontSize: 18, color: 'white'}}>Masukan Nomor Handphone Kamu</Text>
-        <TextInput
-          style={{ height: 45, marginTop: 15, marginBottom: 15, textAlign: 'center', backgroundColor: 'white', fontFamily: 'AllerDisplay', fontSize: 20, borderRadius: 3 }}
-          onChangeText={value => this.setState({ phoneNumber: value })}
-          placeholder={'Nomor Handphone... '}
-          keyboardType='numeric'
-          maxLength={14}
-          value={phoneNumber}
-        />
+        <Text style={{fontFamily: 'AllerDisplay', fontSize: 18, color: 'white', alignItems: 'center'}}>Masukan Nomor Handphone Kamu</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <View style={{height: 45, width: '17%', backgroundColor: 'white', marginTop: 15, justifyContent: 'center', alignItems: 'center', borderRadius: 3}}>
+            <Text style={{fontFamily: 'AllerDisplay', fontSize: 20}}>+62</Text>
+          </View>
+          <TextInput
+            style={{ height: 45, marginTop: 15, width: '79%', marginBottom: 15, marginLeft: 10, backgroundColor: 'white', fontFamily: 'AllerDisplay', fontSize: 20, borderRadius: 3 }}
+            onChangeText={value => this.setState({ phoneNumber: value })}
+            placeholder={'Nomor Handphone... '}
+            keyboardType='numeric'
+            maxLength={14}
+            value={phoneNumber}
+            />
+        </View>
         <TouchableNativeFeedback onPress={this.signIn} background={TouchableNativeFeedback.Ripple('black')}>
           <View style={{ height: 45, backgroundColor: '#00f5d0', borderRadius: 3, justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{color: 'white', fontFamily: 'AllerDisplay', fontSize: 18}}>Kirim</Text>
