@@ -2,8 +2,7 @@ export const styling = {
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black'
+    alignItems: 'center'
   },
   textInputContainer: {
     width: '100%',

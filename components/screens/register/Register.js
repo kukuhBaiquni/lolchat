@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableNativeFeedback, TextInput, Dimensions, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, TouchableNativeFeedback, TextInput, Dimensions, StyleSheet, TouchableOpacity, Animated, Keyboard } from 'react-native';
 import { facebookLogin } from '../../../config/FacebookLogin';
 import { fonts } from '../../../config/FontList';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,7 +18,7 @@ export default class Login extends Component {
       gender: false,
       password: '',
       error: [],
-      p: 0,
+      submited: false,
       loading: new Animated.Value(0)
     }
   }
@@ -108,37 +108,73 @@ export default class Login extends Component {
     )
   }
 
+  submitButton() {
+    return(
+      <View style={{marginTop: 10}}>
+        <TouchableNativeFeedback
+          onPress={() => this.submitForm()}
+          background={TouchableNativeFeedback.Ripple('black', false)}
+          >
+          <View style={styles.touchableArea}>
+            <Text style={styles.submitText}>Submit</Text>
+          </View>
+        </TouchableNativeFeedback>
+      </View>
+    )
+  }
+
+  progressBar() {
+    const { loading } = this.state;
+    return(
+      <View style={{ marginTop: 20, alignItems: 'center'}}>
+        <Text style={{color: 'white', fontSize: 11, marginBottom: 10, fontFamily: 'AllerDisplay', fontSize: 15}}>Tunggu Sebentar ya..</Text>
+        <View style={{height: 7, width: '100%', borderColor: '#00f5d0', borderWidth: 1, borderRadius: 5}}>
+          <Animated.View style={{height: 5, backgroundColor: '#00f5d0', width: loading, borderRadius: 5}} />
+        </View>
+      </View>
+    )
+  }
+
   submitForm() {
+    Keyboard.dismiss()
     const { firstName, lastName, password, loading } = this.state;
     const status = registerValidation(firstName, lastName, password);
-    this.setState({error: status})
-    Animated.sequence([
-      Animated.timing(loading, {
-        toValue: ((SCREEN_WIDTH*0.85)*0.25),
-        duration: (Math.random() * 3)*1000
-      }),
-      Animated.timing(loading, {
-        toValue: ((SCREEN_WIDTH*0.85)*0.5),
-        duration: (Math.random() * 3)*1000
-      }),
-      Animated.timing(loading, {
-        toValue: ((SCREEN_WIDTH*0.85)*0.75),
-        duration: (Math.random() * 3)*1000
-      }),
-      Animated.timing(loading, {
-        toValue: ((SCREEN_WIDTH*0.85)),
-        duration: (Math.random() * 3)*1000
-      }),
-    ]).start()
+    if (status.length === 0) {
+      this.setState({submited: true, error: []})
+      Animated.sequence([
+        Animated.timing(loading, {
+          toValue: ((SCREEN_WIDTH*0.85)*0.25),
+          duration: (Math.random() * 3)*1000
+        }),
+        Animated.timing(loading, {
+          toValue: ((SCREEN_WIDTH*0.85)*0.5),
+          duration: (Math.random() * 3)*1000
+        }),
+        Animated.timing(loading, {
+          toValue: ((SCREEN_WIDTH*0.85)*0.75),
+          duration: (Math.random() * 3)*1000
+        }),
+        Animated.timing(loading, {
+          toValue: ((SCREEN_WIDTH*0.85)),
+          duration: (Math.random() * 3)*1000
+        }),
+      ]).start((e) => console.log('done'))
+    }else{
+      this.setState({error: status})
+    }
   }
 
   render() {
-    const { error, loading, p } = this.state;
+    const { error, loading, submited } = this.state;
     return(
-      <View style={styles.container}>
-        <Text style={[{color:'white'}, styles.loginText]}>
-          <Text style={[styles.loginText, {color: '#00f5d0'}]}>R</Text>egister..
-        </Text>
+      <View style={[styles.container, {backgroundColor: 'black'}]}>
+        {
+          !submited &&
+          <Text style={[{color:'white'}, styles.loginText]}>
+            <Text style={[styles.loginText, {color: '#00f5d0'}]}>R</Text>egister..
+          </Text>
+        }
+        {submited && this.progressBar()}
         <View style={{width: SCREEN_WIDTH*0.85}}>
           <View>
             {this.renderFirstNameForm()}
@@ -149,22 +185,7 @@ export default class Login extends Component {
             {this.renderPassword()}
             {error.includes('password') && <Text style={c.alert}>Minimal 3 karakter dan hanya mengandung huruf dan angka</Text>}
           </View>
-          <View style={{marginTop: 10}}>
-            <TouchableNativeFeedback
-              onPress={() => this.submitForm()}
-              background={TouchableNativeFeedback.Ripple('black', false)}
-              >
-              <View style={styles.touchableArea}>
-                <Text style={styles.submitText}>Submit</Text>
-              </View>
-            </TouchableNativeFeedback>
-          </View>
-          <View style={{alignItems: 'center', marginTop: 20}}>
-            <Text style={{color: 'white', fontSize: 11, marginBottom: 10}}>Tunggu Sebentar ya.. lagi buat akun</Text>
-            <View style={{height: 10, width: '100%', borderColor: '#00f5d0', borderWidth: 1, borderRadius: 5}}>
-              <Animated.View style={{height: 8, backgroundColor: '#00f5d0', width: loading, borderRadius: 5}} />
-            </View>
-          </View>
+          {this.submitButton()}
         </View>
       </View>
     )
