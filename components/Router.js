@@ -82,6 +82,6 @@ const RootStack = createStackNavigator({
       header: null
     })
   },
-}, {initialRouteName: 'Login'});
+}, {initialRouteName: 'Register'});
 
 export const Navigator = createAppContainer(RootStack);

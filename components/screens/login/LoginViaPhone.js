@@ -27,7 +27,7 @@ class LoginViaPhone extends Component {
         'Login gagal',
         'Nomor kamu belum terdaftar, daftar sekarang?',
         [
-          {text: 'OK', onPress: () => this.props.navigation.replace('Register')},
+          {text: 'OK', onPress: () => this.props.navigation.replace('Register', '+62' + this.state.phoneNumber)},
           {text: 'TIDAK'}
         ],
         { cancelable: false }

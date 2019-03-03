@@ -15,14 +15,11 @@ export const styling = {
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderWidth: 2,
-    borderWidth: 2,
-    borderColor: '#00f5d0',
-    borderColor: '#00f5d0'
+    borderWidth: 2
   },
   textInputIcon: {
     height: 30,
     width: 30,
-    backgroundColor: '#00f5d0',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
